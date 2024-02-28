@@ -1,6 +1,6 @@
-# AUTOIssuer :octocat:
+# AUTOCommit :octocat:
 
-This repository contains a Python script that automates the process of creating and closing issues in a GitHub repository using the GitHub API.                                                       
+This repository contains a Python script that automates the process of committing and deleting a file in a GitHub repository using the GitHub API.
 
 ## :gear: Setup & Usage
 
@@ -16,7 +16,9 @@ This repository contains a Python script that automates the process of creating 
 ```bash
 git clone https://github.com/your_username/AUTOIssuer.git
 cd AUTOIssuer
+pip install python-dotenv requests schedule
 ```
+
 2. Install the required Python packages:
 
 ```bash
@@ -30,9 +32,8 @@ Create a `.env` file in the root directory of the project and add the following 
 ```bash
 REPO_OWNER=your_username
 REPO_NAME=your_repository
-ISSUE_TITLE=Your Issue Title
-ISSUE_BODY=Description of your issue
 GITHUB_TOKEN=your_personal_access_token
+GITHUB_EMAIL=your_github_email
 ```
 
 ### Running the Script
@@ -45,10 +46,10 @@ python script.py
 
 ## :warning: Warning
 
-- The `close_all_issues` function will close all open issues in the specified repository. Use this function with caution, as closing issues cannot be undone through the API.
+- The script will commit and delete a file in the specified repository according to the schedule. Use this script with caution, as deleting files cannot be undone through the API.
 
-- Creating a large number of issues in a short period of time might be considered abuse of the GitHub API and could potentially lead to your account being flagged or rate-limited. Use the script responsibly and only create issues as needed.
+- Making a large number of commits in a short period of time might be considered abuse of the GitHub API and could potentially lead to your account being flagged or rate-limited. Use the script responsibly and only make commits as needed.
 
 ## :handshake: Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/NathanJargon/AUTOIssuer/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/NathanJargon/AUTOCommit/issues).
