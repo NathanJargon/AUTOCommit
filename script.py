@@ -75,14 +75,15 @@ def debug_delete_files():
 
                 response = requests.delete(url.format(owner=username, repo=repo, path=file_path), headers=headers, json=data)
                 print(response.status_code)
-                        
+      
+      
+debug_commit_files()
+debug_delete_files()              
+   
 schedule.every().day.at("09:00").do(commit_file)
 schedule.every().day.at("12:00").do(delete_file)
 schedule.every().day.at("18:00").do(delete_file)
 
+
 while True:
-    debug_commit_files()
-    time.sleep(1)
-    debug_delete_files()
     schedule.run_pending()
-    time.sleep(1)
