@@ -48,11 +48,14 @@ def delete_file():
     print(response.status_code)
 
 def debug_commit_files():
-    for i in range(1, 6):
+    for i in range(1, 3):
         file_path = f'file_{i}.txt'
         if not os.path.exists(file_path):
             with open(file_path, 'w') as f:
                 f.write(f"This is file number {i}")
+
+        with open('.gitignore', 'a') as f:
+            f.write('\n' + file_path)
 
         with open(file_path, 'r') as f:
             content = base64.b64encode(f.read().encode('utf-8')).decode('utf-8')
@@ -65,7 +68,7 @@ def debug_commit_files():
         print(response.status_code)
 
 def debug_delete_files():
-    for i in range(1, 6):
+    for i in range(1, 3):
         file_path = f'file_{i}.txt'
         if os.path.exists(file_path):
             response = requests.get(url.format(owner=username, repo=repo, path=file_path), headers=headers)
@@ -75,7 +78,13 @@ def debug_delete_files():
 
                 response = requests.delete(url.format(owner=username, repo=repo, path=file_path), headers=headers, json=data)
                 print(response.status_code)
-      
+
+            with open('.gitignore', 'r') as f:
+                lines = f.readlines()
+            with open('.gitignore', 'w') as f:
+                for line in lines:
+                    if line.strip("\n") != file_path:
+                        f.write(line)
       
 debug_commit_files()
 debug_delete_files()              
